@@ -1,5 +1,5 @@
 # Use lightweight Java runtime
-FROM public.ecr.aws/temurin/temurin:17-jdk
+FROM public.ecr.aws/temurin/temurin:21-jdk
 
 # Create app directory
 WORKDIR /app    
