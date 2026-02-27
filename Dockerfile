@@ -1,5 +1,5 @@
 # Use lightweight Java runtime
-FROM amazoncorretto:17-alpine
+FROM public.ecr.aws/corretto/corretto:17-alpine
 
 # Create app directory
 WORKDIR /app    
