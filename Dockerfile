@@ -1,8 +1,8 @@
 # Use lightweight Java runtime
-FROM public.ecr.aws/temurin/temurin:17-jdk-alpine
+FROM public.ecr.aws/temurin/temurin:17-jre
 
 # Create app directory
-WORKDIR /app
+WORKDIR /app    
 
 # Copy the jar file
 COPY target/*.jar app.jar
