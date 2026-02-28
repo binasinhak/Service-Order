@@ -1,5 +1,5 @@
 # Use lightweight Java runtime
-FROM public.ecr.aws/corretto/corretto:17-alpine
+FROM eclipse-temurin:17-jre
 
 # Create app directory
 WORKDIR /app    
