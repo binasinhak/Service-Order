@@ -1,5 +1,5 @@
 # Use lightweight Java runtime
-FROM amazoncorretto:17-alpine3.18
+FROM <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/docker-hub/amazoncorretto:17-alpine3.18
 
 # Create app directory
 WORKDIR /app    
