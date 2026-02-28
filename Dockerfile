@@ -1,5 +1,5 @@
 # Use lightweight Java runtime
-FROM amazoncorretto:17-alpine-jre
+FROM amazoncorretto:17-alpine3.18
 
 # Create app directory
 WORKDIR /app    
