@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      - chmod +x kubectl
+      - mv kubectl /usr/local/bin/
+
+      - echo Installing jq...
+      - yum install -y jq
+
+  build:
+    commands:
+      - echo Updating kubeconfig...
+      - aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+
+      - echo getting the image uri from the build output (imagedefinitions.json)...
+      - IMAGE_URI=$(jq -r '.[0].image' imagedefinitions.json)
+
+      - echo Replacing IMAGE_PLACEHOLDER in deployment.yaml
+      - sed -i "s|IMAGE_PLACEHOLDER|$IMAGE_URI|g" k8s/deployment.yaml
+
+      - echo Applying Kubernetes manifests...
+      - kubectl apply -f k8s/
+
+      - echo Waiting for rollout to complete...
+      - DEPLOYMENT_NAME=$(kubectl get deployment -o jsonpath='{.items[0].metadata.name}')
+      
+      - kubectl rollout status deployment/$DEPLOYMENT_NAME

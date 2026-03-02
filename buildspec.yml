@@ -1,10 +1,5 @@
 version: 0.2
 
-env:
-  variables:
-    IMAGE_REPO_NAME: order-service
-    AWS_REGION: us-east-1
-
 phases:
   install:
     runtime-versions:
@@ -44,7 +39,7 @@ phases:
       - echo Pushing image to ECR
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
-      
+
       - echo Writing image detail file
       - printf '{"image":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
