@@ -2,6 +2,7 @@ version: 0.2
 
 phases:
   install:
+  - echo Instide buildspec.yml
     runtime-versions:
       java: corretto17
     commands:
